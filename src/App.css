@@ -1,6 +1,6 @@
 .App {
   display: flex;
-  max-width: 100%;
+  /* max-width: 100%; */
   justify-content: space-around;
   margin: 1.5rem;
 }
@@ -57,5 +57,15 @@ button {
 
 #map-area {
   height: 90vh;
-  width: 90%;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .control {
+    margin-right: 0;
+  }
 }
