@@ -60,6 +60,8 @@ button {
   width: 100%;
 }
 
+/* Responsive Media Queries */
+
 @media screen and (max-width: 800px) {
   .App {
     flex-direction: column;
@@ -67,5 +69,14 @@ button {
 
   .control {
     margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search-control {
+    display: block;
+  }
+  button {
+    margin: -1rem 0 0.5rem;
   }
 }
