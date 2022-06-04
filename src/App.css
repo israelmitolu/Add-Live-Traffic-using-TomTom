@@ -1,0 +1,61 @@
+.App {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-around;
+  margin: 1.5rem;
+}
+
+.control {
+  text-align: center;
+  margin-right: 1.5rem;
+}
+
+.search-wrapper {
+  max-width: 100%;
+  background: white;
+  border: 1px solid lightgray;
+  overflow: hidden;
+}
+
+.search-wrapper:hover,
+.search-wrapper:focus {
+  border: 1px solid #ccc;
+}
+
+input {
+  outline: none;
+  font-size: 1rem;
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 15px;
+}
+.search-control {
+  display: flex;
+}
+
+button {
+  background: #01ac01;
+  border: 1px solid lightgray;
+  color: white;
+  padding: 0.5rem;
+  margin: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.result {
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.result:hover {
+  background: whitesmoke;
+}
+
+#map-area {
+  height: 90vh;
+  width: 90%;
+}
