@@ -32,6 +32,7 @@ input {
 }
 .search-control {
   display: flex;
+  justify-content: center;
 }
 
 button {
@@ -60,6 +61,19 @@ button {
   width: 100%;
 }
 
+.traffic-control {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
+  background: darkgreen;
+  color: yellow;
+  border: 1px solid black;
+}
+
+input[type="checkbox"] {
+  font-size: 1rem;
+}
 /* Responsive Media Queries */
 
 @media screen and (max-width: 800px) {
@@ -69,6 +83,10 @@ button {
 
   .control {
     margin-right: 0;
+  }
+
+  .result {
+    text-align: center;
   }
 }
 

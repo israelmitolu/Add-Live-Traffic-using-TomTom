@@ -7,29 +7,28 @@ import tt from "@tomtom-international/web-sdk-services";
 function App() {
   const mapElement = useRef();
   const [map, setMap] = useState({});
-
-  //Initial state for search
+  const [mapLongitude, setMapLongitude] = useState(-122.4194);
+  const [mapLatitude, setMapLatitude] = useState(37.7749);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState({});
-
-  const [MapLongitude, setMapLongitude] = useState(-122.4194);
-  const [MapLatitude, setMapLatitude] = useState(37.7749);
+  const [flowChecked, setFlowChecked] = useState(false);
+  const [incidentsChecked, setIncidentsChecked] = useState(false);
 
   useEffect(() => {
     let map = ttmaps.map({
       key: "nG6oY1L34rbTfoLz0D205CrB42a3mf8m",
       container: "map-area",
-      center: [MapLongitude, MapLatitude],
+      center: [mapLongitude, mapLatitude],
       zoom: 18,
       style: {
         map: "basic_main",
         poi: "poi_main",
-        trafficIncidents: "incidents_day",
-        trafficFlow: "flow_relative",
+        trafficFlow: "flow_absolute",
+        trafficIncidents: "incidents_dark",
       },
-      styleVisibility: {
-        trafficFlow: true,
-        trafficIncidents: true,
+      stylesVisibility: {
+        trafficFlow: flowChecked,
+        trafficIncidents: incidentsChecked,
       },
     });
     setMap(map);
@@ -68,7 +67,11 @@ function App() {
     <div
       className="result"
       onClick={(e) => {
+        //Animates movement of map to new location
         moveMapTo(result.position);
+        // Sets the current location of the map to the location that was clicked
+        setMapLongitude(result.position.lng);
+        setMapLatitude(result.position.lat);
       }}
     >
       {result.address.freeformAddress}, {result.address.country}
@@ -110,6 +113,33 @@ function App() {
               <h4>No locations</h4>
             )}
           </div>
+        </div>
+
+        {/* Toggle Traffic */}
+        <div className="traffic-control">
+          <label htmlFor="traffic-flow">
+            Traffic Flow
+            <input
+              type="checkbox"
+              id="traffic-flow"
+              onClick={(e) => {
+                setFlowChecked((prevCheck) => !prevCheck);
+                console.log(flowChecked);
+              }}
+            />
+          </label>
+
+          <label htmlFor="traffic-incidents">
+            Traffic Incidents
+            <input
+              type="checkbox"
+              id="traffic-incidents"
+              onClick={() => {
+                setIncidentsChecked((prevCheck) => !prevCheck);
+                console.log(incidentsChecked);
+              }}
+            />
+          </label>
         </div>
       </div>
       <div ref={mapElement} id="map-area"></div>
