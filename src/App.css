@@ -1,6 +1,5 @@
 .App {
   display: flex;
-  /* max-width: 100%; */
   justify-content: space-around;
   margin: 1.5rem;
 }
@@ -61,19 +60,6 @@ button {
   width: 100%;
 }
 
-.traffic-control {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 1rem;
-  background: darkgreen;
-  color: yellow;
-  border: 1px solid black;
-}
-
-input[type="checkbox"] {
-  font-size: 1rem;
-}
 /* Responsive Media Queries */
 
 @media screen and (max-width: 800px) {

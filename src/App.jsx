@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import "./App.css";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import * as ttmaps from "@tomtom-international/web-sdk-maps";
@@ -11,8 +11,6 @@ function App() {
   const [mapLatitude, setMapLatitude] = useState(37.7749);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState({});
-  const [flowChecked, setFlowChecked] = useState(false);
-  const [incidentsChecked, setIncidentsChecked] = useState(false);
 
   useEffect(() => {
     let map = ttmaps.map({
@@ -23,12 +21,12 @@ function App() {
       style: {
         map: "basic_main",
         poi: "poi_main",
-        trafficFlow: "flow_absolute",
-        trafficIncidents: "incidents_dark",
+        trafficFlow: "flow_relative",
+        trafficIncidents: "incidents_day",
       },
       stylesVisibility: {
         trafficFlow: true,
-        trafficIncidents: true,
+        trafficIncidents: false,
       },
     });
     setMap(map);
@@ -41,7 +39,7 @@ function App() {
   const moveMapTo = (newLoc) => {
     map.flyTo({
       center: newLoc,
-      zoom: 15,
+      zoom: 18,
     });
   };
 
@@ -113,33 +111,6 @@ function App() {
               <h4>No locations</h4>
             )}
           </div>
-        </div>
-
-        {/* Toggle Traffic */}
-        <div className="traffic-control">
-          <label htmlFor="traffic-flow">
-            Traffic Flow
-            <input
-              type="checkbox"
-              id="traffic-flow"
-              onClick={(e) => {
-                setFlowChecked((prevCheck) => !prevCheck);
-                console.log(flowChecked);
-              }}
-            />
-          </label>
-
-          <label htmlFor="traffic-incidents">
-            Traffic Incidents
-            <input
-              type="checkbox"
-              id="traffic-incidents"
-              onClick={() => {
-                setIncidentsChecked((prevCheck) => !prevCheck);
-                console.log(incidentsChecked);
-              }}
-            />
-          </label>
         </div>
       </div>
       <div ref={mapElement} id="map-area"></div>
