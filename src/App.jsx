@@ -27,8 +27,8 @@ function App() {
         trafficIncidents: "incidents_dark",
       },
       stylesVisibility: {
-        trafficFlow: flowChecked,
-        trafficIncidents: incidentsChecked,
+        trafficFlow: true,
+        trafficIncidents: true,
       },
     });
     setMap(map);
