@@ -61,24 +61,6 @@ function App() {
       });
   };
 
-  //Display incident details
-
-  // tt.services
-  //   .incidentDetailsV5({
-  //     key: "pr8zIB21ZpFeJnXiIRzxcPGeo7kpoJDu",
-  //     boundingBox:
-  //       "4.8854592519716675,52.36934334773164,4.897883244144765,52.37496348620152",
-  //     timeValidityFilter: "present",
-  //     t: "1654584020",
-  //   })
-  //   .then((res) => {
-  //     console.log(res);
-  //     map.addLayer(res.incidents);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
   // Result box
   const ResultBox = ({ result }) => (
     <div
