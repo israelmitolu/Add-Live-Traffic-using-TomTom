@@ -14,10 +14,11 @@ function App() {
 
   useEffect(() => {
     let map = ttmaps.map({
-      key: "nG6oY1L34rbTfoLz0D205CrB42a3mf8m",
+      key: "pr8zIB21ZpFeJnXiIRzxcPGeo7kpoJDu",
       container: "map-area",
       center: [mapLongitude, mapLatitude],
-      zoom: 18,
+      zoom: 15,
+      pitch: 50,
       style: {
         map: "basic_main",
         poi: "poi_main",
@@ -25,8 +26,8 @@ function App() {
         trafficIncidents: "incidents_day",
       },
       stylesVisibility: {
-        trafficFlow: true,
-        trafficIncidents: false,
+        trafficFlow: false,
+        trafficIncidents: true,
       },
     });
     setMap(map);
@@ -39,7 +40,7 @@ function App() {
   const moveMapTo = (newLoc) => {
     map.flyTo({
       center: newLoc,
-      zoom: 18,
+      zoom: 15,
     });
   };
 
@@ -47,7 +48,7 @@ function App() {
   const fuzzySearch = (query) => {
     tt.services
       .fuzzySearch({
-        key: "nG6oY1L34rbTfoLz0D205CrB42a3mf8m",
+        key: "pr8zIB21ZpFeJnXiIRzxcPGeo7kpoJDu",
         query: query,
       })
       .then((res) => {
@@ -64,8 +65,7 @@ function App() {
   const ResultBox = ({ result }) => (
     <div
       className="result"
-      onClick={(e) => {
-        //Animates movement of map to new location
+      onClick={() => {
         moveMapTo(result.position);
         // Sets the current location of the map to the location that was clicked
         setMapLongitude(result.position.lng);
