@@ -7,10 +7,12 @@ import tt from "@tomtom-international/web-sdk-services";
 function App() {
   const mapElement = useRef();
   const [map, setMap] = useState({});
-  const [mapLongitude, setMapLongitude] = useState(-122.4194);
-  const [mapLatitude, setMapLatitude] = useState(37.7749);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState({});
+  const [mapLongitude, setMapLongitude] = useState(null);
+  const [mapLatitude, setMapLatitude] = useState(null);
+
+  // initialize the map
 
   useEffect(() => {
     let map = ttmaps.map({
@@ -35,6 +37,21 @@ function App() {
       map.remove();
     };
   }, []);
+
+  // Get the user's location using Geolocation API
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setMapLongitude(position.coords.longitude);
+        setMapLatitude(position.coords.latitude);
+        // Set the map center to the user's location
+        map.setCenter([mapLongitude, mapLatitude]);
+      },
+      (error) => {
+        alert(error.message);
+      }
+    );
+  }, [mapLongitude, mapLatitude]);
 
   //Animate movement of map to new location
   const moveMapTo = (newLoc) => {
