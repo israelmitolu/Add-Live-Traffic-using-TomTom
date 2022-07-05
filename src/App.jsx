@@ -45,7 +45,7 @@ function App() {
         setMapLongitude(position.coords.longitude);
         setMapLatitude(position.coords.latitude);
         // Set the map center to the user's location
-        map.setCenter([mapLongitude, mapLatitude]);
+        // map.setCenter([mapLongitude, mapLatitude]);
       },
       (error) => {
         alert(error.message);
