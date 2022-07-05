@@ -13,7 +13,6 @@ function App() {
   const [mapLatitude, setMapLatitude] = useState(null);
 
   // initialize the map
-
   useEffect(() => {
     let map = ttmaps.map({
       key: "pr8zIB21ZpFeJnXiIRzxcPGeo7kpoJDu",
@@ -44,13 +43,18 @@ function App() {
       (position) => {
         setMapLongitude(position.coords.longitude);
         setMapLatitude(position.coords.latitude);
-        // Set the map center to the user's location
-        map.setCenter([mapLongitude, mapLatitude]);
       },
       (error) => {
         alert(error.message);
       }
     );
+  }, []);
+
+  // Move the map to the user's location
+  useEffect(() => {
+    if (mapLongitude && mapLatitude) {
+      map.setCenter([mapLongitude, mapLatitude]);
+    }
   }, [mapLongitude, mapLatitude]);
 
   //Animate movement of map to new location
